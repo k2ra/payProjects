@@ -10,11 +10,13 @@ import {
   import { createStackNavigator } from 'react-navigation';
   import loginView from './src/component/login/loginView';
   import dashboardView from'./src/component/dashboardView';
+  import Registry  from './src/component/register/registry';
 
 const Route = createStackNavigator(
   {
     Login: { screen: loginView },
     Dashboard: { screen: dashboardView},
+    Registry: { screen: Registry},
   }
 )
 

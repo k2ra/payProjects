@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     padding:20,
     justifyContent:'center',
     alignItems: 'center',
-    borderWidth:1,
+    //borderWidth:1,
   },
   input:{
     padding:20,
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   logoContent:{
     flex:3,
     justifyContent:'center',
-    borderWidth:1,
+    //borderWidth:1,
     alignItems:'center'
   },
   bottomContent:{
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: 20,
     flexDirection: 'row',
-    borderWidth:1,
+    //borderWidth:1,
   }
 
 });

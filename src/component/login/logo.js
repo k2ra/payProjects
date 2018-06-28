@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text, 
   View,
+  Image
 } from 'react-native'
 
 
@@ -13,7 +14,10 @@ export class LogoImg extends React.Component{
 		
 		return(
 			<View style={styles.container}>
-			  <Text>image aqui</Text>
+			  <Image
+          style={styles.logoImg}
+          source ={require('../../img/logoApay.png')}
+        />
 			</View>
 
 			)
@@ -24,10 +28,17 @@ export class LogoImg extends React.Component{
 const styles = StyleSheet.create({
   container: {
     
-    backgroundColor: '#03A9F4',
+    //backgroundColor: '#03A9F4',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
 
+  },
+  logoImg:{
+  	alignItems:'flex-start',
+  	width:100,
+  	height:100,
+    marginTop:50, 
+    justifyContent:'center',
   }
 });
 

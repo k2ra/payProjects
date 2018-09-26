@@ -7,7 +7,8 @@ import {
   View, 
   Alert,
   TextInput,
-  TouchableOpacity 
+  TouchableOpacity,
+  AsyncStorage 
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { LoginForm } from './loginForm';
@@ -27,7 +28,18 @@ export default class loginView extends React.Component{
 			header: null,
 		}
 
-	}
+  }
+  
+  componentDidMount(){
+    this._loadInitialState().done();
+  }
+
+  _loadInitialState = async ()=> {
+    var value = await AsyncStorage.getItem('user');
+    if(value !== null){
+      this.props.navigation.navigate('Dashboard');
+    }
+  }
   
 	render(){
 		
@@ -47,7 +59,7 @@ export default class loginView extends React.Component{
               onChangeText = {(secretCode) => this.setState({secretCode})}
               />
         
-          <TouchableOpacity style={styles.button} onPress={() =>this.props.navigation.navigate('Dashboard')}>
+          <TouchableOpacity style={styles.button} onPress={() =>this.login}>
 
             <Text style={styles.textButton}>Confirmar</Text>
           </TouchableOpacity>
@@ -63,7 +75,36 @@ export default class loginView extends React.Component{
 			
 
 			)
-	}
+  }
+  
+  login = () =>{
+      fetch('http://172.18.55.21:3000/users', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: 'kev',
+          password : this.state.secretCode,
+        })
+      })
+      .then((response) => response.json())
+      .then ((res) => {
+
+        alert(res.message);
+
+       /* if (res.succes === true){
+          AsyncStorage.setItem('user', res.user);
+          this.props.navigation.navigate('Dashboard');
+        }
+        else{
+          alert(res.message);
+        }*/
+
+      })
+      .done();
+  }
 
 }
 
